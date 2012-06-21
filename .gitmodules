@@ -1,0 +1,6 @@
+[submodule "pyroomba"]
+	path = pyroomba
+	url = git://github.com/jon/pyroomba.git
+[submodule "Retaliation"]
+	path = Retaliation
+	url = https://github.com/codedance/Retaliation
