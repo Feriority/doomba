@@ -8,23 +8,16 @@ COMMENCE_FIRING = '1'
 CEASE_FIRE = '0'
 PAUSE = '.'
 
-
-def guess_port_filename():
-    dev_dir = '/dev'
-    prefix = 'tty.usb'
-    for filename in os.listdir(dev_dir):
-        if filename.startswith(prefix):
-            return os.path.join(dev_dir, filename)
-
+ARDUINO_PORT = '/dev/tty.usbmodem1411'
 
 class Vulcanuino(object):
-    def __init__(self, port_name):
+    def __init__(self, port_name=ARDUINO_PORT):
         self.serial_port = SerialPort(port_name, 9600)
 
         # Arduino resets when the serial port is open, give it time to boot up.
         time.sleep(5)
 
-    def single_shot(self, pause_time=1):
+    def single_shot(self, pause_time=20):
         self.commence_firing()
         self.pause(pause_time)
         self.cease_fire()

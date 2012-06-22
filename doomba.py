@@ -1,3 +1,5 @@
+import time
+
 import pyroomba
 
 
@@ -25,3 +27,15 @@ class Doomba(pyroomba.RoombaClassic):
 
 	def stop(self):
 		self.drive_direct(0, 0)
+
+if __name__ == '__main__':
+	doomba = Doomba()
+	doomba.forward()
+	time.sleep(1)
+	doomba.right()
+	time.sleep(1)
+	doomba.left()
+	time.sleep(1)
+	doomba.back()
+	time.sleep(1)
+	doomba.stop()

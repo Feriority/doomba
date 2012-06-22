@@ -1,6 +1,8 @@
+import time
+
 from bottle import request, route, run, static_file
 
-import doomba
+import doomba as doomba_
 import vulcanuino
 
 
@@ -9,12 +11,12 @@ class MockObject(object):
 		return lambda *args, **kwargs: None
 
 try:
-	doomba = doomba.Doomba()
+	doomba = doomba_.Doomba()
 except:
 	print "Warning: Roomba not connected"
 	doomba = MockObject()
 try:
-	gun = vulcanuino.Vulcanuino(vulcanuino.guess_port_filename())
+	gun = vulcanuino.Vulcanuino()
 except:
 	print "Warning: Gun not connected"
 	gun = MockObject()
@@ -65,5 +67,6 @@ def start_rampage():
 @route('/end_rampage')
 def end_rampage():
 	gun.cease_fire()
+
 
 run(host='10.12.5.29', port=8080)
