@@ -1,30 +1,12 @@
 from bottle import route, run
-import pyroomba
 
-ROOMBA_PORT = '/dev/tty.usbserial-A2001mZT'
-
-
-class Doomba(pyroomba.Roomba):
-	def __init__(self, port, **kwargs):
-		super(SimpleDoomba, self).__init__(self, port, **kwargs)
-		self.start()
-		self.safe()
-		self.speed = 100
-
-	def left(self):
-		self.drive_direct(-self.speed, self.speed)
-		
-	def right(self):
-		self.drive_direct(self.speed, -self.speed)
-
-	def forward(self):
-		self.drive_direct(self.speed, self.speed)
-
-	def stop(self):
-		self.drive_direct(0, 0)
+import doomba
+import vulcanuino
 
 
-doomba = Doomba(ROOMBA_PORT)
+doomba = doomba.Doomba()
+gun = vulcanuino.Vulcanuino(vulcanuino.guess_port_filename())
+
 
 @route('/')
 def home():
@@ -51,8 +33,16 @@ def stop_moving():
 	doomba.stop()
 
 @route('/fire')
-def fire_missles():
-	return "Fire ze missles!"
+def shoot_dart():
+	gun.single_shot()
+
+@route('/start_rampage')
+def start_rampage():
+	gun.commence_firing()
+
+@route('/end_rampage')
+def end_rampage():
+	gun.cease_fire()
 
 
-run(host='localhost', port=8080)
+run(host='10.12.5.29', port=8081)
