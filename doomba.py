@@ -15,20 +15,20 @@ class Doomba(pyroomba.RoombaClassic):
         self.turn_ratio = 0.75
 
     def left(self):
-        self.drive_direct(self.speed, -self.speed)
-
-    def right(self):
         self.drive_direct(-self.speed, self.speed)
 
+    def right(self):
+        self.drive_direct(self.speed, -self.speed)
+
     def forward_left(self):
-        left_wheel = self.speed * (1 - self.turn_ratio + 1)
-        right_wheel = self.speed * self.turn_ratio
+        right_wheel = self.speed * (1 - self.turn_ratio + 1)
+        left_wheel = self.speed * self.turn_ratio
 
         self.drive_direct(left_wheel, right_wheel)
 
     def forward_right(self):
-        left_wheel = self.speed * self.turn_ratio
-        right_wheel = self.speed * (1 - self.turn_ratio + 1)
+        rightt_wheel = self.speed * self.turn_ratio
+        left_wheel = self.speed * (1 - self.turn_ratio + 1)
 
         self.drive_direct(left_wheel, right_wheel)
 
