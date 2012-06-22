@@ -11,16 +11,18 @@ class MockObject(object):
 try:
 	doomba = doomba.Doomba()
 except:
+	print "Warning: Roomba not connected"
 	doomba = MockObject()
 try:
 	gun = vulcanuino.Vulcanuino(vulcanuino.guess_port_filename())
 except:
+	print "Warning: Gun not connected"
 	gun = MockObject()
 
 
 @route('/')
 def home():
-	static_file('controls.html', root='/Users/nat/code/doomba/control_page')
+	return static_file('controls.html', root='/Users/nat/code/doomba/control_page')
 
 @route('/forward')
 def go_forward():
