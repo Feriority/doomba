@@ -38,6 +38,14 @@ def go_back():
 def set_speed():
 	doomba.speed = int(request.query.speed) or 100
 
+@route('/forward_left')
+def go_forward_left():
+	doomba.forward_left()
+
+@route('/forward_right')
+def go_forward_right():
+	doomba.forward_right()
+
 @route('/left')
 def turn_left():
 	doomba.left()
