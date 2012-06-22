@@ -26,6 +26,11 @@ except:
 def home():
 	return static_file('controls.html', root='/Users/nat/code/doomba/control_page')
 
+@route('/reset')
+def reset_doomba():
+	global doomba
+	doomba = doomba_.Doomba()
+
 @route('/forward')
 def go_forward():
 	doomba.forward()

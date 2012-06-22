@@ -22,6 +22,9 @@
             function goRight() {
                 sendCommand('/right');
             }
+            function reset() {
+                sendCommand('/reset');
+            }
             function forwardTurnRight() {
                 sendCommand('/forward_right');
             }
@@ -117,6 +120,11 @@
             document.onkeydown = pressKey;
             document.onkeyup = releaseKey;
         </script>
+
+        <iframe width="720" height="431" src="http://www.ustream.tv/embed/11399627?ub=5D1719&amp;lc=CD311B&amp;oc=ffffff&amp;uc=ffffff" scrolling="no" frameborder="0" style="border: 0px none transparent;">    </iframe>
+        <br /><a href="http://www.ustream.tv/facebook" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Live Video app for Facebook by Ustream</a>
+
+
         <p>
         &nbsp; <a href='#' onclick='goForward()'>^</a>
         <br>
@@ -127,5 +135,9 @@
         </p>
         <p> <a href='#' onclick='stop()'> STOP! </a> </p>
         <p> <a href='#' onclick='fire()'> FIRE! </a> </p>
+        <br>
+        <br>
+        <br>
+        <p> <a href='#' onclick='reset()'> reset the doomba </a> </p>
     </BODY>
 </HTML>
