@@ -36,7 +36,7 @@ def go_back():
 
 @route('/speed')
 def set_speed():
-	doomba.speed = request.query.speed or 100
+	doomba.speed = int(request.query.speed) or 100
 
 @route('/left')
 def turn_left():
