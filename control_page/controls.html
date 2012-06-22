@@ -76,20 +76,20 @@
             }
 
             function toggleKey(keyCode, isPressed) {
-                // Left
-                if (keyCode == 37) {
+                // Left / a
+                if (keyCode == 37 || keyCode == 65) {
                     pressedKeys['left'] = isPressed;
                 }
-                // Up
-                else if (keyCode == 38) {
+                // Up / w
+                else if (keyCode == 38 || keyCode == 87) {
                     pressedKeys['up'] = isPressed;
                 }
-                // Right
-                else if (keyCode == 39) {
+                // Right / d
+                else if (keyCode == 39 || keyCode == 68) {
                     pressedKeys['right'] = isPressed;
                 }
-                // Down
-                else if (keyCode == 40) {
+                // Down / s
+                else if (keyCode == 40 || keyCode == 83) {
                     pressedKeys['down'] = isPressed;
                 }
                 else {
@@ -99,6 +99,11 @@
             }
 
             function pressKey(evt) {
+                // Space is special; fire on press and move on
+                if (evt.keyCode == 32) {
+                    fire();
+                    return;
+                }
                 if (toggleKey(evt.keyCode, true)) {
                     manageKeyState();
                 }
