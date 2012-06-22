@@ -10,8 +10,8 @@ class Doomba(pyroomba.RoombaClassic):
 	def __init__(self, port=ROOMBA_PORT, **kwargs):
 		super(Doomba, self).__init__(port, **kwargs)
 		self.start()
-		self.safe()
-		self.speed = 100
+		#self.safe()
+		self.speed = 200
 
 	def left(self):
 		self.drive_direct(-self.speed, self.speed)
