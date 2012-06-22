@@ -20,5 +20,8 @@ class Doomba(pyroomba.RoombaClassic):
 	def forward(self):
 		self.drive_direct(self.speed, self.speed)
 
+	def back(self):
+		self.drive_direct(-self.speed, -self.speed)
+
 	def stop(self):
 		self.drive_direct(0, 0)
