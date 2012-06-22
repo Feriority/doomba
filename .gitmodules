@@ -1,6 +1,3 @@
 [submodule "pyroomba"]
 	path = pyroomba
 	url = https://github.com/jon/pyroomba
-[submodule "Retaliation"]
-	path = Retaliation
-	url = https://github.com/codedance/Retaliation
