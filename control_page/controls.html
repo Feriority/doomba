@@ -2,18 +2,19 @@
     <HEAD><TITLE>DOOMBA</TITLE></HEAD>
     <BODY>
         <script>
-            var server = ''
+            var server = '10.12.5.29:8081';
+
             function sendCommand(cmd) {
                 req = XMLHttpRequest();
                 req.open("POST", server + cmd, true);
                 req.send();
-                alert(cmd);
             }
+
             function goForward() {
                 sendCommand('/up/');
             }
             function goBackward() {
-                return;
+                sendCommand('/back');
             }
             function turnLeft() {
                 sendCommand('/left');
@@ -21,9 +22,92 @@
             function turnRight() {
                 sendCommand('/right');
             }
+            function forwardTurnRight() {
+                return;
+            }
+            function forwardTurnLeft() {
+                return;
+            }
+
+            function stop() {
+                sendCommand('/stop');
+            }
+
             function fire() {
                 sendCommand('/fire');
             }
+
+            /* key press state manager */
+            var pressedKeys = {
+                'up': false,
+                'down': false,
+                'left': false,
+                'right': false
+            };
+
+            function manageKeyState() {
+                if (pressedKeys['up']) {
+                    if (pressedKeys['left']) {
+                        forwardTurnLeft();
+                    }
+                    else if (pressedKeys['right']) {
+                        forwardTurnRight();
+                    }
+                    else if (pressedKeys['down']) {
+                        stop();
+                    }
+                    else {
+                        goForward();
+                    }
+                }
+                else if (pressedKeys['down']) {
+                    goBackward();
+                }
+                else if (pressedKeys['left']) {
+                    turnLeft();
+                }
+                else if (pressedKeys['right']) {
+                    turnRight();
+                }
+                else {
+                    stop();
+                }
+            }
+
+            function toggleKey(keyCode, isPressed) {
+                // Left
+                if (keyCode == 37) {
+                    isPressed;eys['left'] = isPressed;
+                }
+                else if (keyCode == 38) {
+                    isPressed;eys['up'] = isPressed;
+                }
+                else if (keyCode == 39) {
+                    isPressed;eys['false'] = isPressed;
+                }
+                else if (keyCode == 40) {
+                    isPressed;eys['down'] = isPressed;
+                }
+                else {
+                    return false;
+                }
+                return true;
+            }
+
+            function pressKey(evt) {
+                if (toggleKey(evt.keyCode, true)) {
+                    manageKeyState();
+                }
+            }
+
+            function releaseKey(evt) {
+                if (toggleKey(evt.keyCode, false)) {
+                    manageKeyState();
+                }
+            }
+
+            document.onkeydown = pressKey;
+            document.onkeyup = releaseKey;
         </script>
         <p>
         &nbsp; <a href='#' onclick='goForward()'>^</a>
@@ -33,6 +117,7 @@
         <br>
         &nbsp; <a href='#' onclick='goBackward()'>v</a>
         </p>
+        <p> <a href='#' onclick='stop()'> STOP! </a> </p>
         <p> <a href='#' onclick='fire()'> FIRE! </a> </p>
     </BODY>
 </HTML>
