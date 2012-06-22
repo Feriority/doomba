@@ -1,0 +1,38 @@
+<HTML>
+    <HEAD><TITLE>DOOMBA</TITLE></HEAD>
+    <BODY>
+        <script>
+            var server = ''
+            function sendCommand(cmd) {
+                req = XMLHttpRequest();
+                req.open("POST", server + cmd, true);
+                req.send();
+                alert(cmd);
+            }
+            function goForward() {
+                sendCommand('/up/');
+            }
+            function goBackward() {
+                return;
+            }
+            function turnLeft() {
+                sendCommand('/left');
+            }
+            function turnRight() {
+                sendCommand('/right');
+            }
+            function fire() {
+                sendCommand('/fire');
+            }
+        </script>
+        <p>
+        &nbsp; <a href='#' onclick='goForward()'>^</a>
+        <br>
+        <a href='#' onclick='goLeft()'> &lt;</a>
+        &nbsp; <a href='#' onclick='goRight()'> &gt;</a>
+        <br>
+        &nbsp; <a href='#' onclick='goBackward()'>v</a>
+        </p>
+        <p> <a href='#' onclick='fire()'> FIRE! </a> </p>
+    </BODY>
+</HTML>
